@@ -13,50 +13,54 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
-  Color _backgrounfColor = Colors.white;
+class _HomePageState extends State<HomePage> {
+  Color _backgroundColor = Colors.white;
 
-  double smallFont = 24;
-  double largeFont = 48;
+  final _luminanceLimit = 0.5;
 
-  bool _isTapped = false;
+  final _textScaleSmall = 1.0;
+  final _textScaleLarge = 2.0;
 
-  void _changeBackgroundColor() {
-    setState(() {
-      _backgrounfColor = widget._randomColorGenerator.generateRandomColours();
-    });
-  }
+  final _textSizeSmall = 14.0;
+  final _textSizeLarge = 28.0;
 
-  void _onTap() {
-    setState(() {
-      _isTapped = !_isTapped;
-    });
-  }
+  var _large = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: const Key("home_page_key"),
-      backgroundColor: _backgrounfColor,
+      backgroundColor: _backgroundColor,
       body: InkWell(
         onTap: () {
           _changeBackgroundColor();
-          _onTap();
+          _controlAnimation();
         },
         child: Center(
-          child: AnimatedDefaultTextStyle(
-            duration: const Duration(milliseconds: 500),
-            style: TextStyle(
-              fontSize: _isTapped ? largeFont : smallFont,
-              color: _isTapped ? Colors.white : Colors.black,
-            ),
-            child: const Text(
+          child: AnimatedScale(
+            scale: _large ? _textScaleSmall : _textScaleLarge,
+            curve: Curves.elasticOut,
+            duration: const Duration(seconds: 1),
+            child: Text(
               'Hello there!',
+              style: TextStyle(
+                fontSize: _large ? _textSizeLarge : _textSizeSmall,
+                color: _backgroundColor.computeLuminance() > _luminanceLimit
+                    ? Colors.black
+                    : Colors.white,
+              ),
             ),
           ),
         ),
       ),
     );
   }
+
+  void _changeBackgroundColor() {
+    setState(() {
+      _backgroundColor = widget._randomColorGenerator.generateRandomColours();
+    });
+  }
+
+  void _controlAnimation() => setState(() => _large = !_large);
 }
