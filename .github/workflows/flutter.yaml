@@ -42,24 +42,20 @@ jobs:
 
           if [ dirs_to_analyse != "" ]
           then
-            echo dirs_to_analyse
             dart run dart_code_metrics:metrics \
               analyze \
               $dirs_to_analyse \
               --fatal-warnings \
               --fatal-performance \
-              --fatal-style \
-              --root-folder=./
+              --fatal-style
             dart run dart_code_metrics:metrics \
               check-unused-files \
               $dirs_to_analyse \
-              --fatal-unused \
-              --root-folder=./
+              --fatal-unused
             dart run dart_code_metrics:metrics \
               check-unused-code \ 
               $dirs_to_analyse \
-              --fatal-unused \
-              --root-folder=./
+              --fatal-unused
           fi
 
       - name: Check formatting
