@@ -32,7 +32,7 @@ void main() {
       expect(text, findsOneWidget);
 
       // Verify that the initial text is 'Hello there'
-      expect(tester.widget<Text>(find.byType(Text)).data, 'Hello there!');
+      expect(tester.widget<Text>(find.byType(Text)).data, helloThereText);
     },
   );
 

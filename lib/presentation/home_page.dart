@@ -46,15 +46,15 @@ class _HomePageState extends State<HomePage> {
   void _controlAnimation() => setState(() => _isLarge = !_isLarge);
 }
 
-///Used to animate text
+/// Used to animate text
 class AnimatedText extends StatefulWidget {
-  ///Variable to check text Size
+  /// Variable to check text Size
   final bool isLarge;
 
-  ///Variable to check background color luminance
+  /// Variable to check background color luminance
   final double luminance;
 
-  ///Constructor of AnimatedText
+  /// Constructor of AnimatedText
   const AnimatedText({
     super.key,
     required this.isLarge,
