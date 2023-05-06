@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solid_software_test_app/presentation/app.dart';
+import 'package:solid_software_test_app/utils/constants.dart';
 
 void main() {
   testWidgets(
@@ -10,7 +10,7 @@ void main() {
       await tester.pumpWidget(
         const App(),
       );
-      expect(find.byKey(const Key("app_key")), findsOneWidget);
+      expect(find.byKey(appKey), findsOneWidget);
     },
   );
 }

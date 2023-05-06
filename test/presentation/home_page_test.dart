@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:solid_software_test_app/data/random_color_generator.dart';
 import 'package:solid_software_test_app/presentation/home_page.dart';
+import 'package:solid_software_test_app/utils/constants.dart';
 
 class MockRandomColorGenerator extends Mock implements RandomColorGenerator {}
 
@@ -16,7 +17,7 @@ void main() {
           home: HomePage(),
         ),
       );
-      expect(find.byKey(const Key("home_page_key")), findsOneWidget);
+      expect(find.byKey(homePageKey), findsOneWidget);
 
       // Verifing inkwell widget
       final inkwell = find.byType(InkWell);
@@ -51,7 +52,7 @@ void main() {
           ),
         ),
       );
-      expect(find.byKey(const Key("home_page_key")), findsOneWidget);
+      expect(find.byKey(homePageKey), findsOneWidget);
 
       // Verifing inkwell widget
       final inkwell = find.byType(InkWell);
